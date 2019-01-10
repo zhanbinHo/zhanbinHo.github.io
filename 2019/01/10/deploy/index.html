@@ -96,20 +96,28 @@
 
 
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="发布系统前言公司的开发团队主要分前端，后端，测试。围绕这一个大的项目进行开发工作。之前只有两个环境dev和release。dev用于日常的开发测试，release是线上生产环境。随着业务的发展，有几个问题很快地暴露了出来。一个是dev作为开发和测试环境的集合，经常会出现测试同学和开发同学代码的互相覆盖；一个是线上的机器随着业务的庞大而增多。这时候，重构开发流程，构建代码自动部署的系统是我们迫在眉睫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="发布系统">
+<meta property="og:url" content="http://yoursite.com/2019/01/10/deploy/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="发布系统前言公司的开发团队主要分前端，后端，测试。围绕这一个大的项目进行开发工作。之前只有两个环境dev和release。dev用于日常的开发测试，release是线上生产环境。随着业务的发展，有几个问题很快地暴露了出来。一个是dev作为开发和测试环境的集合，经常会出现测试同学和开发同学代码的互相覆盖；一个是线上的机器随着业务的庞大而增多。这时候，重构开发流程，构建代码自动部署的系统是我们迫在眉睫">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://markdown-pictures-1255766832.cos.ap-guangzhou.myqcloud.com/comp_article/gitflow_v2.png?q-sign-algorithm=sha1&q-ak=AKID5reZK4oDsFDKveU17tV83l5wZS4ll78F&q-sign-time=1547087110;1547088910&q-key-time=1547087110;1547088910&q-header-list=&q-url-param-list=&q-signature=cb72e3a905de82a53519ee08d6f41b916410c088&x-cos-security-token=aab4793a97be040efaf87dad409d6d1e687e8bd810001">
+<meta property="og:image" content="https://markdown-pictures-1255766832.cos.ap-guangzhou.myqcloud.com/test.png?q-sign-algorithm=sha1&q-ak=AKIDfipDM11jlpNnLs7mhbNzNOgJNPPeIxWi&q-sign-time=1547087056;1547088856&q-key-time=1547087056;1547088856&q-header-list=&q-url-param-list=&q-signature=33825e6bd6ea517a617ce54fbe448e253c88ffe7&x-cos-security-token=d1225d69902a93972b23b073ffb4248a31ef20a410001">
+<meta property="og:image" content="https://markdown-pictures-1255766832.cos.ap-guangzhou.myqcloud.com/comp_article/task.png?q-sign-algorithm=sha1&q-ak=AKIDDfzVLkyfMObyt3lO6asoWN7m0ODsgoCG&q-sign-time=1547087423;1547089223&q-key-time=1547087423;1547089223&q-header-list=&q-url-param-list=&q-signature=554e15f1d15f227a042419e6be43a1893b753dc7&x-cos-security-token=273b13a4fcffd806a8fa7671e708e94a0e9c253510001">
+<meta property="og:updated_time" content="2019-01-10T04:43:09.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="发布系统">
+<meta name="twitter:description" content="发布系统前言公司的开发团队主要分前端，后端，测试。围绕这一个大的项目进行开发工作。之前只有两个环境dev和release。dev用于日常的开发测试，release是线上生产环境。随着业务的发展，有几个问题很快地暴露了出来。一个是dev作为开发和测试环境的集合，经常会出现测试同学和开发同学代码的互相覆盖；一个是线上的机器随着业务的庞大而增多。这时候，重构开发流程，构建代码自动部署的系统是我们迫在眉睫">
+<meta name="twitter:image" content="https://markdown-pictures-1255766832.cos.ap-guangzhou.myqcloud.com/comp_article/gitflow_v2.png?q-sign-algorithm=sha1&q-ak=AKID5reZK4oDsFDKveU17tV83l5wZS4ll78F&q-sign-time=1547087110;1547088910&q-key-time=1547087110;1547088910&q-header-list=&q-url-param-list=&q-signature=cb72e3a905de82a53519ee08d6f41b916410c088&x-cos-security-token=aab4793a97be040efaf87dad409d6d1e687e8bd810001">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/10/deploy/">
 
 
 
@@ -119,7 +127,7 @@
   };
 </script>
 
-  <title>Hexo</title>
+  <title>发布系统 | Hexo</title>
   
 
 
@@ -167,8 +175,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -206,7 +213,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -268,9 +275,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -302,10 +309,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/deploy/" class="post-title-link" itemprop="url">发布系统</a>
+          <h1 class="post-title" itemprop="name headline">发布系统
+
               
             
           </h1>
@@ -364,9 +369,7 @@
       
 
       
-        
-          
-            <h1 id="发布系统"><a href="#发布系统" class="headerlink" title="发布系统"></a>发布系统</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司的开发团队主要分前端，后端，测试。围绕这一个大的项目进行开发工作。之前只有两个环境dev和release。<br>dev用于日常的开发测试，release是线上生产环境。随着业务的发展，有几个问题很快地暴露了出来。一个是dev<br>作为开发和测试环境的集合，经常会出现测试同学和开发同学代码的互相覆盖；一个是线上的机器随着业务的庞大而增多。<br>这时候，重构开发流程，构建代码自动部署的系统是我们迫在眉睫的任务。</p>
+        <h1 id="发布系统"><a href="#发布系统" class="headerlink" title="发布系统"></a>发布系统</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>公司的开发团队主要分前端，后端，测试。围绕这一个大的项目进行开发工作。之前只有两个环境dev和release。<br>dev用于日常的开发测试，release是线上生产环境。随着业务的发展，有几个问题很快地暴露了出来。一个是dev<br>作为开发和测试环境的集合，经常会出现测试同学和开发同学代码的互相覆盖；一个是线上的机器随着业务的庞大而增多。<br>这时候，重构开发流程，构建代码自动部署的系统是我们迫在眉睫的任务。</p>
 <h2 id="系统介绍"><a href="#系统介绍" class="headerlink" title="系统介绍"></a>系统介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。</p>
 <h3 id="代码仓库模块"><a href="#代码仓库模块" class="headerlink" title="代码仓库模块"></a>代码仓库模块</h3><p>基于我们需要灵活的分支开发特性，我们摒弃了传统的SVN的，选择了比较有优势的Git作为代码版本管理工具。自然而然<br>我们也选择了开源的Gitlab作为版本管理系统，实现一个自托管的Git项目仓库。<br>安装使用教程可以参考<a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab官网</a></p>
 <h3 id="开发流程模块"><a href="#开发流程模块" class="headerlink" title="开发流程模块"></a>开发流程模块</h3><p>基于Git的软件项目开发管理模型，业内比较成熟的有Git Flow，Github Flow。但是我们并没有直接套用这两套<br>标准，而是基于Git灵活的分支开发特点，结合我们本身的人员架构和开发习惯进行因地制宜，设计了一套适合自己的<br>分支开发模型。<br><img src="https://markdown-pictures-1255766832.cos.ap-guangzhou.myqcloud.com/comp_article/gitflow_v2.png?q-sign-algorithm=sha1&amp;q-ak=AKID5reZK4oDsFDKveU17tV83l5wZS4ll78F&amp;q-sign-time=1547087110;1547088910&amp;q-key-time=1547087110;1547088910&amp;q-header-list=&amp;q-url-param-list=&amp;q-signature=cb72e3a905de82a53519ee08d6f41b916410c088&amp;x-cos-security-token=aab4793a97be040efaf87dad409d6d1e687e8bd810001" alt="git开发时序图">  </p>
@@ -392,8 +395,6 @@
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>根据该系统的设计，我们可以看出。在开发流程中，分工比较明确。开发同学只需要拉取分支，开发功能；测试同学需要合并分支，发布代码，测试功能；<br>teamleader则需要负责冲突解决。</p>
 
-          
-        
       
     </div>
 
@@ -416,158 +417,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/01/10/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-10 11:16:19" itemprop="dateCreated datePublished" datetime="2019-01-10T11:16:19+08:00">2019-01-10</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -577,14 +448,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -605,8 +477,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -650,6 +531,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#发布系统"><span class="nav-number">1.</span> <span class="nav-text">发布系统</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统介绍"><span class="nav-number">1.2.</span> <span class="nav-text">系统介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">1.2.1.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">1.2.2.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">1.2.3.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">发布任务管理</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的问题"><span class="nav-number">1.2.4.</span> <span class="nav-text">遇到的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">1.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -772,6 +670,10 @@
   
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -781,6 +683,8 @@
 
 
   
+  
+
 
 
 
