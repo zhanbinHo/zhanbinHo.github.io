@@ -106,9 +106,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/old_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/gitflow_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/test.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/task.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/deploy_flow_v2.png">
-<meta property="og:updated_time" content="2019-01-14T06:14:51.755Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/task_v2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/deploy_flow_v3.png">
+<meta property="og:updated_time" content="2019-01-14T06:40:55.593Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
@@ -337,7 +337,7 @@
                 
               
 
-              <time title="Created: 2019-01-14 14:14:51" itemprop="dateCreated datePublished" datetime="2019-01-14T14:14:51+08:00">2019-01-14</time>
+              <time title="Created: 2019-01-14 14:40:55" itemprop="dateCreated datePublished" datetime="2019-01-14T14:40:55+08:00">2019-01-14</time>
             
 
             
@@ -385,7 +385,9 @@
 <h3 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h3><p>就上面暴露出来的问题来看，重构开发流程，构建代码自动部署的功能是我们有必要进行的任务。<br>经过技术调研后，我们发现业界有一个项目比较适合我们。<br><a href="http://www.walle-web.io/" target="_blank" rel="noopener">walle 1.0上线部署</a><br>但是经过我们的技术演练后，发现walle的方案并不是100%适合我们。</p>
 <ul>
 <li>walle发布都先压缩整个代码，然后传输整个压缩包，我们的代码文件较大，这种全量发布方式对于我们不是很友好。</li>
-<li>基于历史原因，我们的代码会有一些软链，walle发布系统</li>
+<li>基于历史原因，我们代码上有些jar包文件独立于发布系统，不走版本控制。walle无法实现这一功能。</li>
+<li>无法做到增量发布。</li>
+<li>walle系统相对庞大，二次开发成本高。</li>
 </ul>
 <p>所以我们最后决定基于walle系统的基本思想，结合我们现有的流程进行系统设计改进，实现一个更加适合我们的一套流程和系统。  </p>
 <h2 id="系统介绍"><a href="#系统介绍" class="headerlink" title="系统介绍"></a>系统介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。</p>
@@ -399,7 +401,8 @@
 <li>紧急的bugfix分支也算是一种功能分支，路程与普通的功能分支一样</li>
 <li>如果合并分支时出现冲突，则测试同学退回功能分支给对应的开发同学，待开发的TeamLeader处理完冲突，再转测</li>
 </ul>
-<h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><h4 id="代码部署设计"><a href="#代码部署设计" class="headerlink" title="代码部署设计"></a>代码部署设计</h4><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)，所以有测试环境，预发布环境，生产环境。<br>接下来需要处理的就是怎样将对应分支的代码发布到相对应的机器环境上。<br><img src="/2019/01/14/deploy/test.png" alt="代码部署流程图"><br>下面以Beta环境结合上图，就<strong>代码部署流程</strong>进行详细介绍:  </p>
+<h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。我们新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要是为了保证一个相对接近master环境的环境，同时起到一个double check的效果。</p>
+<h4 id="代码部署设计"><a href="#代码部署设计" class="headerlink" title="代码部署设计"></a>代码部署设计</h4><p>接下来需要处理的就是怎样将对应分支的代码发布到相对应的机器环境上。<br><img src="/2019/01/14/deploy/test.png" alt="代码部署流程图"><br>下面以Beta环境结合上图，就<strong>代码部署流程</strong>进行详细介绍:  </p>
 <ol start="0">
 <li>code存放最新版本的代码，rsync存放上个版本的代码，www存放线上正式版本的代码</li>
 <li>在宿主机从gitlab仓库中拉取指定分支，commit_id的代码</li>
@@ -408,11 +411,8 @@
 <li>通过对比前后两个版本的代码来实现删除代码的功能。（独立出删除代码操作，是因为我们有些线上代码文件需要不走git版本管理）</li>
 <li>代码文件更新前后还可以进行自定义的前置脚本和后置脚本。  </li>
 </ol>
-<h4 id="发布任务管理"><a href="#发布任务管理" class="headerlink" title="发布任务管理"></a>发布任务管理</h4><p>该系统有两个核心的操作。一个是合并分支，一个发布代码。这两个步骤都由测试同学操作，我们有必要将这两个操作封装成任务进行权限收归与管控。<br>所以我们需要一个任务管理后台(如下图)，方便测试同学进行任务操作。<br><img src="/2019/01/14/deploy/task.png" alt="任务管理后台">  </p>
-<h4 id="发布流程"><a href="#发布流程" class="headerlink" title="发布流程"></a>发布流程</h4><p>结合前面的开发流程和发布任务管理模块，我们的代码发布流程大致如下<br><img src="/2019/01/14/deploy/deploy_flow_v2.png" alt="发布流程">  </p>
-<ol start="0">
-<li>相对于以前的y</li>
-</ol>
+<h4 id="发布任务管理"><a href="#发布任务管理" class="headerlink" title="发布任务管理"></a>发布任务管理</h4><p>该系统有两个核心的操作。一个是合并分支，一个发布代码。这两个步骤都由测试同学操作，我们有必要将这两个操作封装成任务进行权限收归与管控。<br>所以我们需要一个任务管理后台(如下图)，方便测试同学进行任务操作。<br><img src="/2019/01/14/deploy/task_v2.png" alt="任务管理后台">  </p>
+<h4 id="发布流程"><a href="#发布流程" class="headerlink" title="发布流程"></a>发布流程</h4><p>结合前面的开发流程和发布任务管理模块，我们的代码发布流程大致如下<br><img src="/2019/01/14/deploy/deploy_flow_v3.png" alt="发布流程">   </p>
 <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><ol start="0">
 <li><strong>分支合并混乱</strong><br>答：刚开始，团队中的同学对git不熟练，开发过程中会出现将测试分支代码合并到生产分支，影响线上功能。后来通过收归三大分支的合并功能而且通过提示功能分支的超前提交情况(基于master分支)来规避这个问题。</li>
 <li><strong>git的日志图谱异常复杂</strong><br>答：由于我们是几十号人一起开发维护一个项目，加上我们会进行将master分支合并到功能分支来TeamLeader分摊解决冲突的压力。<br>所以我们的git log图谱异常复杂。后来在git merge时候加上了–no-ff参数，通过增加冗余的合并日志，有效地得到可读性强的log图谱。</li>
