@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/test.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/14/deploy/deploy_flow_v3.png">
-<meta property="og:updated_time" content="2019-01-14T08:16:57.388Z">
+<meta property="og:updated_time" content="2019-01-14T10:35:14.236Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
@@ -337,7 +337,7 @@
                 
               
 
-              <time title="Created: 2019-01-14 16:16:57" itemprop="dateCreated datePublished" datetime="2019-01-14T16:16:57+08:00">2019-01-14</time>
+              <time title="Created: 2019-01-14 18:35:14" itemprop="dateCreated datePublished" datetime="2019-01-14T18:35:14+08:00">2019-01-14</time>
             
 
             
@@ -385,7 +385,7 @@
 <h3 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h3><p>就上面暴露出来的问题来看，重构开发流程，构建代码自动部署的功能是我们有必要进行的任务。<br>经过技术调研后，我们发现业界有一个项目比较适合我们。<br><a href="http://www.walle-web.io/" target="_blank" rel="noopener">walle 1.0上线部署</a><br>但是经过我们的技术演练后，发现walle的方案并不是100%适合我们。</p>
 <ul>
 <li>walle发布都先压缩整个代码，然后传输整个压缩包，我们的代码文件较大，这种全量发布方式对于我们不是很友好。</li>
-<li>基于历史原因，我们代码上有些jar包文件独立于发布系统，不走版本控制。walle无法实现这一功能。</li>
+<li>基于历史原因，我们代码上有些jar包文件需要独立于发布系统，不走版本控制。walle无法实现这一功能。</li>
 <li>无法做到增量发布。</li>
 <li>walle系统相对庞大，二次开发成本高。</li>
 </ul>
