@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/testing_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-15T04:44:34.921Z">
+<meta property="og:updated_time" content="2019-01-15T04:51:22.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-15 12:44:34" itemprop="dateCreated datePublished" datetime="2019-01-15T12:44:34+08:00">2019-01-15</time>
+              <time title="Created: 2019-01-15 12:51:22" itemprop="dateCreated datePublished" datetime="2019-01-15T12:51:22+08:00">2019-01-15</time>
             
 
             
@@ -401,6 +401,7 @@
 <li>测试同学依次将功能分支合并Beta分支,发布到对应环境进行验证，接着就是Gamma，最后就是Master。</li>
 <li>紧急的bugfix分支也算是一种功能分支，路程与普通的功能分支一样</li>
 <li>如果合并分支时出现冲突，则测试同学退回功能分支给对应的开发同学，待开发的TeamLeader处理完冲突，再转测</li>
+<li>线上代码回滚我们通过发布历史版本的master分支代码来实现。</li>
 </ul>
 <h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。我们新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要是为了保证一个相对接近master环境的环境，同时起到一个double check的效果。</p>
 <h4 id="代码部署设计"><a href="#代码部署设计" class="headerlink" title="代码部署设计"></a>代码部署设计</h4><p>接下来需要处理的就是怎样将对应分支的代码发布到相对应的机器环境上。<br><img src="/2019/01/15/deploy/test.png" alt="代码部署流程图"><br>下面以Beta环境结合上图，就<strong>代码部署流程</strong>进行详细介绍:  </p>
