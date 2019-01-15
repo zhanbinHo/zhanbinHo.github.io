@@ -96,12 +96,12 @@
 
 
 
-  <meta name="description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
+  <meta name="description" content="背景介绍系统1.0公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队的日益壮大(现接近50人)。系统1.0在工作效率上逐渐捉襟见肘。 痛点问题 SVN与现有的开发流程配合">
 <meta property="og:type" content="article">
-<meta property="og:title" content="发布系统">
+<meta property="og:title" content="代码开发流程与代码部署方案">
 <meta property="og:url" content="http://yoursite.com/2019/01/15/deploy/index.html">
 <meta property="og:site_name" content="blog">
-<meta property="og:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
+<meta property="og:description" content="背景介绍系统1.0公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队的日益壮大(现接近50人)。系统1.0在工作效率上逐渐捉襟见肘。 痛点问题 SVN与现有的开发流程配合">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/old_flow_v3.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/program_flow.png">
@@ -109,10 +109,10 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/tesing_deploy_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-15T06:34:24.701Z">
+<meta property="og:updated_time" content="2019-01-15T10:27:43.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="发布系统">
-<meta name="twitter:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
+<meta name="twitter:title" content="代码开发流程与代码部署方案">
+<meta name="twitter:description" content="背景介绍系统1.0公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队的日益壮大(现接近50人)。系统1.0在工作效率上逐渐捉襟见肘。 痛点问题 SVN与现有的开发流程配合">
 <meta name="twitter:image" content="http://yoursite.com/2019/01/15/deploy/old_flow_v3.png">
 
 
@@ -130,7 +130,7 @@
   };
 </script>
 
-  <title>发布系统 | blog</title>
+  <title>代码开发流程与代码部署方案 | blog</title>
   
 
 
@@ -312,7 +312,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">发布系统
+          <h1 class="post-title" itemprop="name headline">代码开发流程与代码部署方案
 
               
             
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-15 14:34:24" itemprop="dateCreated datePublished" datetime="2019-01-15T14:34:24+08:00">2019-01-15</time>
+              <time title="Created: 2019-01-15 18:27:43" itemprop="dateCreated datePublished" datetime="2019-01-15T18:27:43+08:00">2019-01-15</time>
             
 
             
@@ -372,7 +372,13 @@
       
 
       
-        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><h3 id="现状"><a href="#现状" class="headerlink" title="现状"></a>现状</h3><p>公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图<br><img src="/2019/01/15/deploy/old_flow_v3.png" alt="开发流程_旧"></p>
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><h3 id="系统1-0"><a href="#系统1-0" class="headerlink" title="系统1.0"></a>系统1.0</h3><p>公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图<br><img src="/2019/01/15/deploy/old_flow_v3.png" alt="开发流程_旧"><br>系统1.0具备以下优点：</p>
+<ul>
+<li>适合小团队开发</li>
+<li>实现简单快速</li>
+<li>回滚便利  </li>
+</ul>
+<p>但是随着开发团队的日益壮大(现接近50人)。系统1.0在工作效率上逐渐捉襟见肘。</p>
 <h3 id="痛点问题"><a href="#痛点问题" class="headerlink" title="痛点问题"></a>痛点问题</h3><ul>
 <li>SVN与现有的开发流程配合度不高<ol>
 <li>代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。</li>
@@ -391,16 +397,16 @@
 <li>walle系统相对庞大，二次开发成本高。</li>
 </ul>
 <p>所以最后决定基于walle系统的基本思想，结合现有的流程进行系统设计改进，实现一个更加适合团队的一套流程和系统。  </p>
-<h2 id="系统介绍"><a href="#系统介绍" class="headerlink" title="系统介绍"></a>系统介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。</p>
+<h2 id="系统2-0介绍"><a href="#系统2-0介绍" class="headerlink" title="系统2.0介绍"></a>系统2.0介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。</p>
 <h3 id="代码仓库模块"><a href="#代码仓库模块" class="headerlink" title="代码仓库模块"></a>代码仓库模块</h3><p>基于需要灵活的分支开发特性，团队摒弃了传统的SVN的，选择了比较有优势的Git作为代码版本管理工具。自然而然也选择了开源的Gitlab作为版本管理系统，实现一个自托管的Git项目仓库。<br>安装使用教程可以参考<a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab官网</a></p>
 <h3 id="开发流程模块"><a href="#开发流程模块" class="headerlink" title="开发流程模块"></a>开发流程模块</h3><p>基于Git的软件项目开发管理模型，业内比较成熟的有Git Flow，Github Flow。但是团队并没有直接套用这两套标准，而是基于Git灵活的分支开发特点，结合团队本身的人员架构和开发习惯进行因地制宜，设计了一套适合自己的分支开发模型。<br><img src="/2019/01/15/deploy/program_flow.png" alt="git开发时序图">  </p>
 <ul>
 <li>该模型包括四个类型分支，功能分支(Featrue),测试分支(Beta),预发布分支(Gamma),生产分支(Master)</li>
 <li>面对新需求，开发同学会基于最新的Master分支创建一个功能分支Featrue，进行功能开发–&gt;开发完毕–&gt;转测</li>
-<li>普通开发同学没有合并到其他三大分支的权限，测试同学与TeamLeader具备这些能力。</li>
+<li>普通开发同学没有合并到其他三大分支的权限，测试同学与技术骨干具备这些能力。</li>
 <li>测试同学依次将功能分支合并Beta分支,发布到对应环境进行验证，接着就是Gamma，最后就是Master。</li>
 <li>紧急的bugfix分支也算是一种功能分支，路程与普通的功能分支一样</li>
-<li>如果合并分支时出现冲突，则测试同学退回功能分支给对应的开发同学，待开发的TeamLeader处理完冲突，再转测</li>
+<li>如果合并分支时出现冲突，则测试同学退回功能分支给对应的开发同学，待开发的技术骨干处理完冲突，再转测</li>
 <li>线上代码回滚是通过发布历史版本的master分支代码来实现。</li>
 </ul>
 <h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要是为了保证一个相对接近master环境的环境，同时起到一个double check的效果。</p>
@@ -420,7 +426,8 @@
 <li><strong>分支合并混乱</strong><br>答：刚开始，团队中的同学对git不熟练，开发过程中会出现将测试分支代码合并到生产分支，影响线上功能。后来通过收归三大分支的合并功能而且通过提示功能分支的超前提交情况(基于master分支)来规避这个问题。</li>
 <li><strong>git的日志图谱异常复杂</strong><br>答：由于团队中几十号人一起开发维护一个项目,所以git log图谱异常复杂。后来在git merge时候加上了–no-ff参数，通过增加冗余的合并日志，有效地得到可读性强的log图谱。</li>
 <li><strong>rsync方向性问题</strong><br>答：代码部署的时候，使用swoole的异步机制，但是发现如果同时通过宿主机推向各个目标主机，会出现卡死的现象。后通过从各个目标主机拉取宿主机的代码文件解决。</li>
-<li><strong>代码冲突的问题</strong><br>答：进行测试的前，开发同学会进行将最新的master分支合并到功能分支来提前暴露代码冲突问题。</li>
+<li><strong>代码冲突的问题</strong><br>答：进行测试的前，开发同学会进行将最新的master分支合并到功能分支来提前暴露代码冲突。</li>
+<li><strong>发布时间慢</strong><br>答：发布过程中，如果其中一台目标主机的系统负载高，会拖长整个发布时间，影响效率。</li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说，本系统做的核心功能点有：</p>
 <ul>
@@ -579,7 +586,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#现状"><span class="nav-number">1.1.</span> <span class="nav-text">现状</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#痛点问题"><span class="nav-number">1.2.</span> <span class="nav-text">痛点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案选择"><span class="nav-number">1.3.</span> <span class="nav-text">方案选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统介绍"><span class="nav-number">2.</span> <span class="nav-text">系统介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">2.1.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">2.2.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">2.3.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">2.3.2.</span> <span class="nav-text">发布任务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流程"><span class="nav-number">2.3.3.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的困难"><span class="nav-number">2.4.</span> <span class="nav-text">遇到的困难</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统1-0"><span class="nav-number">1.1.</span> <span class="nav-text">系统1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#痛点问题"><span class="nav-number">1.2.</span> <span class="nav-text">痛点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案选择"><span class="nav-number">1.3.</span> <span class="nav-text">方案选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统2-0介绍"><span class="nav-number">2.</span> <span class="nav-text">系统2.0介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">2.1.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">2.2.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">2.3.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">2.3.2.</span> <span class="nav-text">发布任务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流程"><span class="nav-number">2.3.3.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的困难"><span class="nav-number">2.4.</span> <span class="nav-text">遇到的困难</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
