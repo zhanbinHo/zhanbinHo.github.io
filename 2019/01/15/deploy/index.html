@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/testing_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/15/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-15T03:39:59.988Z">
+<meta property="og:updated_time" content="2019-01-15T04:44:34.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍现状公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图 痛点问题 SVN与现有的开发流程配合度不高 代码管理不方便。例如一个开发同学同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。 分支开发模型不成熟。创建，拉取分支代码的成本高 必须在">
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-15 11:39:59" itemprop="dateCreated datePublished" datetime="2019-01-15T11:39:59+08:00">2019-01-15</time>
+              <time title="Created: 2019-01-15 12:44:34" itemprop="dateCreated datePublished" datetime="2019-01-15T12:44:34+08:00">2019-01-15</time>
             
 
             
@@ -413,7 +413,7 @@
 <li>代码文件更新前后还可以进行自定义的前置脚本和后置脚本。  </li>
 </ol>
 <h4 id="发布任务管理"><a href="#发布任务管理" class="headerlink" title="发布任务管理"></a>发布任务管理</h4><p>该系统有两个核心的操作。一个是合并分支，一个发布代码。这两个步骤都由测试同学操作，我们有必要将这两个操作封装成任务进行权限收归与管控。<br>所以我们需要一个任务管理后台(如下图)，方便测试同学进行任务操作。<br><img src="/2019/01/15/deploy/task_v2.png" alt="任务管理后台">  </p>
-<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><p>结合前面的开发流程和发布任务管理模块。<br>我们的测试流程流程大致如下<br><img src="/2019/01/15/deploy/testing_flow.png" alt="发布流程">  </p>
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><p>结合前面的开发流程和发布任务管理模块。<br>我们的开发测试流程流程大致如下<br><img src="/2019/01/15/deploy/testing_flow.png" alt="发布流程">  </p>
 <p>我们的发布流程图大致如下<br><img src="/2019/01/15/deploy/deploy_only.png" alt="发布流程"></p>
 <h3 id="遇到的困难"><a href="#遇到的困难" class="headerlink" title="遇到的困难"></a>遇到的困难</h3><ol start="0">
 <li><strong>分支合并混乱</strong><br>答：刚开始，团队中的同学对git不熟练，开发过程中会出现将测试分支代码合并到生产分支，影响线上功能。后来通过收归三大分支的合并功能而且通过提示功能分支的超前提交情况(基于master分支)来规避这个问题。</li>
