@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/tesing_deploy_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-16T06:01:37.883Z">
+<meta property="og:updated_time" content="2019-01-16T09:29:11.290Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍发布系统1.0文章中的发布系统包括：代码开发流程与代码部署方案。公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日">
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-16 14:01:37" itemprop="dateCreated datePublished" datetime="2019-01-16T14:01:37+08:00">2019-01-16</time>
+              <time title="Created: 2019-01-16 17:29:11" itemprop="dateCreated datePublished" datetime="2019-01-16T17:29:11+08:00">2019-01-16</time>
             
 
             
@@ -388,7 +388,7 @@
 </li>
 <li>dev环境作为开发和测试环境的集合，经常会出现测试和开发代码的互相覆盖，影响开发效率；</li>
 <li>发布流程没保证串行发布。A员工发布，有可能将B员工的代码一起带出去。</li>
-<li>权限管理比较松散，员工离职需要手动处理账号信息。</li>
+<li>权限管理简单，员工离职需要手动处理账号信息。</li>
 </ul>
 <h3 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h3><p>就上面暴露出来的问题来看，重构开发流程，构建代码自动部署的功能是有必要进行的任务。<br>经过技术调研后，发现业界有一个项目比较适合。<br><a href="http://www.walle-web.io/" target="_blank" rel="noopener">walle 1.0上线部署</a><br>但是经过技术演练后，发现walle的方案并不是100%适合。</p>
 <ul>
