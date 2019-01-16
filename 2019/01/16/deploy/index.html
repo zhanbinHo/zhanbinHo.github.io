@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/tesing_deploy_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/16/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-16T05:44:14.639Z">
+<meta property="og:updated_time" content="2019-01-16T05:45:36.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="发布系统">
 <meta name="twitter:description" content="背景介绍发布系统1.0文章中的发布系统包括：代码开发流程与代码部署方案。公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候。系统1.0在工作效率上逐">
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-16 13:44:14" itemprop="dateCreated datePublished" datetime="2019-01-16T13:44:14+08:00">2019-01-16</time>
+              <time title="Created: 2019-01-16 13:45:36" itemprop="dateCreated datePublished" datetime="2019-01-16T13:45:36+08:00">2019-01-16</time>
             
 
             
@@ -398,7 +398,7 @@
 <li>walle系统相对庞大，二次开发成本高。</li>
 </ul>
 <p>所以最后决定基于walle系统的基本思想，结合现有的流程进行系统设计改进，实现一个更加适合团队的一套流程和系统。  </p>
-<h3 id="发布系统2-0介绍"><a href="#发布系统2-0介绍" class="headerlink" title="发布系统2.0介绍"></a>发布系统2.0介绍</h3><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。  </p>
+<h2 id="发布系统2-0介绍"><a href="#发布系统2-0介绍" class="headerlink" title="发布系统2.0介绍"></a>发布系统2.0介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。  </p>
 <h3 id="代码仓库模块"><a href="#代码仓库模块" class="headerlink" title="代码仓库模块"></a>代码仓库模块</h3><p>基于需要灵活的分支开发特性，团队摒弃了传统的SVN的，选择了比较有优势的Git作为代码版本管理工具。自然而然也选择了开源的Gitlab作为版本管理系统，实现一个自托管的Git项目仓库。<br>安装使用教程可以参考<a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab官网</a></p>
 <h3 id="开发流程模块"><a href="#开发流程模块" class="headerlink" title="开发流程模块"></a>开发流程模块</h3><p>基于Git的软件项目开发管理模型，业内比较成熟的有Git Flow，Github Flow。但是团队并没有直接套用这两套标准，而是基于Git灵活的分支开发特点，结合团队本身的人员架构和开发习惯进行因地制宜，设计了一套适合自己的分支开发模型。<br><img src="/2019/01/16/deploy/program_flow.png" alt="git开发时序图">  </p>
 <ul>
@@ -589,7 +589,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布系统1-0"><span class="nav-number">1.1.</span> <span class="nav-text">发布系统1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#痛点问题"><span class="nav-number">1.2.</span> <span class="nav-text">痛点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案选择"><span class="nav-number">1.3.</span> <span class="nav-text">方案选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#发布系统2-0介绍"><span class="nav-number">1.4.</span> <span class="nav-text">发布系统2.0介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">1.5.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">1.6.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">1.7.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">1.7.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">1.7.2.</span> <span class="nav-text">发布任务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流程"><span class="nav-number">1.7.3.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的困难"><span class="nav-number">1.8.</span> <span class="nav-text">遇到的困难</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布系统1-0"><span class="nav-number">1.1.</span> <span class="nav-text">发布系统1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#痛点问题"><span class="nav-number">1.2.</span> <span class="nav-text">痛点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案选择"><span class="nav-number">1.3.</span> <span class="nav-text">方案选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布系统2-0介绍"><span class="nav-number">2.</span> <span class="nav-text">发布系统2.0介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">2.1.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">2.2.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">2.3.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">2.3.2.</span> <span class="nav-text">发布任务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流程"><span class="nav-number">2.3.3.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的困难"><span class="nav-number">2.4.</span> <span class="nav-text">遇到的困难</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
