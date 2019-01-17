@@ -109,7 +109,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/task_v2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/tesing_deploy_flow.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/deploy_only.png">
-<meta property="og:updated_time" content="2019-01-17T02:35:43.621Z">
+<meta property="og:updated_time" content="2019-01-17T03:14:44.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小雨伞发布系统演化之路">
 <meta name="twitter:description" content="背景介绍发布系统1.0公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日渐捉襟见肘。 痛点问题 SVN与现有的开发流程配合">
@@ -338,7 +338,7 @@
                 
               
 
-              <time title="Created: 2019-01-17 10:35:43" itemprop="dateCreated datePublished" datetime="2019-01-17T10:35:43+08:00">2019-01-17</time>
+              <time title="Created: 2019-01-17 11:14:44" itemprop="dateCreated datePublished" datetime="2019-01-17T11:14:44+08:00">2019-01-17</time>
             
 
             
@@ -410,7 +410,7 @@
 <li>如果合并分支时出现冲突，则测试退回功能分支给对应的开发，待开发的技术骨干处理完冲突，再转测</li>
 <li>线上代码回滚是通过发布历史版本的master分支代码来实现。</li>
 </ul>
-<h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要是为了保证一个相对接近master的环境，提供更真实的环境。</p>
+<h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要保证了在现有的分支合并的顺序下，发布的代码是经过接近真实线上环境测试过的。</p>
 <h4 id="代码部署设计"><a href="#代码部署设计" class="headerlink" title="代码部署设计"></a>代码部署设计</h4><p>接下来需要处理的就是怎样将对应分支的代码发布到相对应的机器环境上。<br><img src="/2019/01/17/deploy/test.png" alt="代码部署流程图"><br>下面结合上图，就<strong>代码部署流程</strong>进行详细介绍:</p>
 <ol start="0">
 <li>授权操作都是用过证书的形式，宿主机和目标主机通过内网交互。  </li>
