@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="背景介绍发布系统1.0文章中的发布系统包括：代码开发流程与代码部署方案。公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日">
+<meta property="og:type" content="article">
+<meta property="og:title" content="小雨伞发布系统演化之路">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/deploy/index.html">
+<meta property="og:site_name" content="blog">
+<meta property="og:description" content="背景介绍发布系统1.0文章中的发布系统包括：代码开发流程与代码部署方案。公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/old_flow_v3.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/program_flow.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/test.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/task_v2.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/tesing_deploy_flow.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/17/deploy/deploy_only.png">
+<meta property="og:updated_time" content="2019-01-17T02:08:30.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="小雨伞发布系统演化之路">
+<meta name="twitter:description" content="背景介绍发布系统1.0文章中的发布系统包括：代码开发流程与代码部署方案。公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图系统1.0具备以下优点：  适合小团队开发 实现简单快速 回滚便利    但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/17/deploy/old_flow_v3.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/deploy/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>小雨伞发布系统演化之路 | blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/deploy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="zhanbinHo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">小雨伞发布系统演化之路
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-01-17 10:08:30" itemprop="dateCreated datePublished" datetime="2019-01-17T10:08:30+08:00">2019-01-17</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><h3 id="发布系统1-0"><a href="#发布系统1-0" class="headerlink" title="发布系统1.0"></a>发布系统1.0</h3><p>文章中的发布系统包括：代码开发流程与代码部署方案。<br>公司的开发团队主要分前端，后端，测试。服务器环境有两个，dev用于日常的开发测试，release是线上生产环境。团队基于SVN版本管理工具，围绕这一个大的项目进行开发工作。开发流程大致如下图<br><img src="/2019/01/17/deploy/old_flow_v3.png" alt="开发流程_旧"><br>系统1.0具备以下优点：</p>
+<ul>
+<li>适合小团队开发</li>
+<li>实现简单快速</li>
+<li>回滚便利  </li>
+</ul>
+<p>但是随着开发团队人数增长到30+的时候，系统1.0在工作效率上日渐捉襟见肘。</p>
+<h3 id="痛点问题"><a href="#痛点问题" class="headerlink" title="痛点问题"></a>痛点问题</h3><ul>
+<li>SVN与现有的开发流程配合度不高<ol>
+<li>代码管理不方便。例如一个开发同时负责多个功能开发，在发布的时候，需要选择对应的文件进行发布。</li>
+<li>分支开发模型不成熟。创建，拉取分支代码的成本高</li>
+<li>必须在有网络的情况下工作，本地不能存储代码。</li>
+</ol>
+</li>
+<li>dev环境作为开发和测试环境的集合，经常会出现测试和开发代码的互相覆盖，影响开发效率；</li>
+<li>发布流程没保证串行发布。A员工发布，有可能将B员工的代码一起带出去。</li>
+<li>权限管理简单，员工离职需要手动处理账号信息。</li>
+</ul>
+<h3 id="方案选择"><a href="#方案选择" class="headerlink" title="方案选择"></a>方案选择</h3><p>就上面暴露出来的问题来看，重构开发流程，构建代码自动部署的功能是有必要进行的任务。<br>经过技术调研后，发现业界有一个项目比较适合。<br><a href="http://www.walle-web.io/" target="_blank" rel="noopener">walle 1.0上线部署</a><br>但是经过技术演练后，发现walle的方案并不是100%适合。</p>
+<ul>
+<li>walle发布都先压缩整个代码，然后传输整个压缩包，代码文件中的素材资源较大，这种全量发布方式不是很友好。</li>
+<li>基于历史原因，代码上有些jar包文件需要独立于发布系统，不走版本控制。walle无法实现这一功能。</li>
+<li>无法做到增量发布。</li>
+<li>walle系统相对庞大，二次开发成本高。</li>
+</ul>
+<p>所以最后决定基于walle系统的基本思想，结合现有的流程进行系统设计改进，实现一个更加适合团队的一套流程和系统。  </p>
+<h2 id="发布系统2-0介绍"><a href="#发布系统2-0介绍" class="headerlink" title="发布系统2.0介绍"></a>发布系统2.0介绍</h2><p>本系统主要包括代码仓库模块，开发流程模块，代码发布部署模块。  </p>
+<h3 id="代码仓库模块"><a href="#代码仓库模块" class="headerlink" title="代码仓库模块"></a>代码仓库模块</h3><p>基于需要灵活的分支开发特性，团队摒弃了传统的SVN的，选择了比较有优势的Git作为代码版本管理工具。自然而然也选择了开源的Gitlab作为版本管理系统，实现一个自托管的Git项目仓库。<br>安装使用教程可以参考<a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab官网</a></p>
+<h3 id="开发流程模块"><a href="#开发流程模块" class="headerlink" title="开发流程模块"></a>开发流程模块</h3><p>基于Git的软件项目开发管理模型，业内比较成熟的有Git Flow，Github Flow。但是团队并没有直接套用这两套标准，而是基于Git灵活的分支开发特点，结合团队本身的人员架构和开发习惯进行因地制宜，设计了一套适合自己的分支开发模型。<br><img src="/2019/01/17/deploy/program_flow.png" alt="git开发时序图">  </p>
+<ul>
+<li>该模型包括四个类型分支，功能分支(Featrue),测试分支(Beta),预发布分支(Gamma),生产分支(Master)</li>
+<li>面对新需求，开发会基于最新的Master分支创建一个功能分支Featrue，进行功能开发–&gt;开发完毕–&gt;转测</li>
+<li>利用gitlab的分支管理功能限制了普通开发合并功能分支到其他三大分支的能力，保留了测试与技术骨干他们的能力。</li>
+<li>测试依次将功能分支合并Beta分支,发布到对应环境进行验证，接着就是Gamma，最后就是Master。</li>
+<li>紧急的bugfix分支也算是一种功能分支，路程与普通的功能分支一样</li>
+<li>如果合并分支时出现冲突，则测试退回功能分支给对应的开发，待开发的技术骨干处理完冲突，再转测</li>
+<li>线上代码回滚是通过发布历史版本的master分支代码来实现。</li>
+</ul>
+<h3 id="代码发布部署模块"><a href="#代码发布部署模块" class="headerlink" title="代码发布部署模块"></a>代码发布部署模块</h3><p>对应着测试分支(Beta)，预发布分支(Gamma)，生产分支(Master)。新增加了测试环境（beta）和预发布环境（gamma）。beta环境的加入解耦了测试环境和开发环境，解决了代码互相覆盖的问题。gamma环境主要是为了保证一个相对接近master的环境，提供更真实的环境。</p>
+<h4 id="代码部署设计"><a href="#代码部署设计" class="headerlink" title="代码部署设计"></a>代码部署设计</h4><p>接下来需要处理的就是怎样将对应分支的代码发布到相对应的机器环境上。<br><img src="/2019/01/17/deploy/test.png" alt="代码部署流程图"><br>下面结合上图，就<strong>代码部署流程</strong>进行详细介绍:</p>
+<ol start="0">
+<li>授权操作都是用过证书的形式，宿主机和目标主机通过内网交互。  </li>
+<li>code存放最新版本的代码，rsync存放上个版本的代码，www存放线上正式版本的代码</li>
+<li>在宿主机从gitlab仓库中拉取指定分支，commit_id的代码</li>
+<li>通过swoole的异步机制，让各个目标服务器使用rsync命令从宿主机拉取代码。</li>
+<li>通过本地rsync来实现新增代码和修改代码的功能。</li>
+<li>通过对比前后两个版本的代码来实现删除代码的功能。（独立出删除代码操作，是因为有些线上代码文件需要不走git版本管理）</li>
+<li>代码文件更新前后还可以进行自定义的前置脚本和后置脚本。</li>
+</ol>
+<h4 id="发布任务管理"><a href="#发布任务管理" class="headerlink" title="发布任务管理"></a>发布任务管理</h4><p>该系统有两个核心的操作。一个是合并分支，一个发布代码。这两个步骤都由测试负责操作，有必要将这两个操作封装成任务进行权限收归与管控。<br>所以需要一个任务管理后台(如下图)，方便测试进行任务操作。<br><img src="/2019/01/17/deploy/task_v2.png" alt="任务管理后台">  </p>
+<h4 id="工作流程"><a href="#工作流程" class="headerlink" title="工作流程"></a>工作流程</h4><p>结合前面的开发流程和发布任务管理模块。<br>开发测试流程流程大致如下<br><img src="/2019/01/17/deploy/tesing_deploy_flow.png" alt="开发测试流程">  </p>
+<p>发布流程图大致如下<br><img src="/2019/01/17/deploy/deploy_only.png" alt="发布流程"></p>
+<h3 id="遇到的困难"><a href="#遇到的困难" class="headerlink" title="遇到的困难"></a>遇到的困难</h3><ol start="0">
+<li><strong>分支合并混乱</strong><br>答：刚开始，团队中的一些成员对git不熟练，开发过程中会出现将测试分支代码合并到生产分支，影响线上功能。后来通过收归三大分支的合并功能而且通过提示功能分支的超前提交情况(基于master分支)来规避这个问题。</li>
+<li><strong>git的日志图谱异常复杂</strong><br>答：由于团队中几十号人一起开发维护一个项目,所以git log图谱异常复杂。后来在git merge时候加上了–no-ff参数，通过增加冗余的合并日志，有效地得到可读性强的log图谱。</li>
+<li><strong>rsync方向性问题</strong><br>答：代码部署的时候，使用swoole的异步机制，但是发现如果同时通过宿主机推向各个目标主机，会出现卡死的现象。后通过从各个目标主机拉取宿主机的代码文件解决。</li>
+<li><strong>代码冲突的问题</strong><br>答：进行测试的前，开发会进行将最新的master分支合并到功能分支来提前暴露代码冲突。</li>
+<li><strong>发布时间慢</strong><br>答：发布过程中，如果其中一台目标主机的系统负载高，会拖长整个发布时间，影响效率。</li>
+</ol>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>总的来说，本系统做的核心功能点有：</p>
+<ul>
+<li>符合现有团队的权限控制</li>
+<li>版本控制与发布系统独立（可以使用svn、git作为版本控制）</li>
+<li>制定符合研发团队的发布流程</li>
+<li>能做到增量发布</li>
+<li>支持按照历史的commit_id进行回滚  </li>
+<li>内网环境，授权操作都以证书形式，安全系数高。</li>
+</ul>
+<p>根据以上设计，可以看出。在开发流程中，开发只需要拉取分支，开发功能；测试需要合并分支，发布代码，测试功能；技术骨干则需要负责冲突解决。分工简单明确，有利于团队内推广。<br>这套基于Git的开发流程和代码部署系统。从实践结果来看，有效地解决了团队之前的痛点，一定程度上提高了工作效率。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/10/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">zhanbinHo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景介绍"><span class="nav-number">1.</span> <span class="nav-text">背景介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布系统1-0"><span class="nav-number">1.1.</span> <span class="nav-text">发布系统1.0</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#痛点问题"><span class="nav-number">1.2.</span> <span class="nav-text">痛点问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#方案选择"><span class="nav-number">1.3.</span> <span class="nav-text">方案选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#发布系统2-0介绍"><span class="nav-number">2.</span> <span class="nav-text">发布系统2.0介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#代码仓库模块"><span class="nav-number">2.1.</span> <span class="nav-text">代码仓库模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发流程模块"><span class="nav-number">2.2.</span> <span class="nav-text">开发流程模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码发布部署模块"><span class="nav-number">2.3.</span> <span class="nav-text">代码发布部署模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#代码部署设计"><span class="nav-number">2.3.1.</span> <span class="nav-text">代码部署设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发布任务管理"><span class="nav-number">2.3.2.</span> <span class="nav-text">发布任务管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工作流程"><span class="nav-number">2.3.3.</span> <span class="nav-text">工作流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到的困难"><span class="nav-number">2.4.</span> <span class="nav-text">遇到的困难</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">zhanbinHo</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
